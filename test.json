@@ -1,0 +1,7 @@
+{
+  "destination": "Siargao",
+  "weeksLeft": 8,
+  "groupSize": 4,
+  "currentSavings": 2000,
+  "expectedExpenses": [{ "category": "Transport", "amount": 6000 }]
+}
