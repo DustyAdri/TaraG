@@ -1,0 +1,7 @@
+{
+  "destination": "Tokyo, Japan (5-day trip)",
+  "weeksLeft": 1,
+  "groupSize": 4,
+  "currentSavings": 500,
+  "expectedExpenses": [{ "category": "Total budget", "amount": 500 }]
+}

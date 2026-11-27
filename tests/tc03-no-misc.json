@@ -1,0 +1,11 @@
+{
+  "destination": "Bohol",
+  "weeksLeft": 10,
+  "groupSize": 5,
+  "currentSavings": 3000,
+  "expectedExpenses": [
+    { "category": "Transport", "amount": 4000 },
+    { "category": "Accommodation", "amount": 6000 },
+    { "category": "Food", "amount": 5000 }
+  ]
+}
