@@ -1,6 +1,11 @@
 import { GoogleGenAI, Type, HarmCategory, HarmBlockThreshold } from '@google/genai';
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+// Created on first use so the API key from .env is loaded before the client is built.
+let ai;
+function getClient() {
+  ai ??= new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+  return ai;
+}
 
 const BUFFER_CATEGORY = /misc|contingency|buffer|emergency/i;
 
@@ -42,7 +47,7 @@ export async function generateTripBudgetPlan(tripData, onChunk) {
       - User-Listed Expected Expenses: ${JSON.stringify(tripData.expectedExpenses)}
     `;
 
-    const stream = await ai.models.generateContentStream({
+    const stream = await getClient().models.generateContentStream({
       model: 'gemini-3.5-flash-lite',
       config: {
         systemInstruction: `You are an expert AI Travel Financial Planner and Sinking-Fund Coach for Tara, G!. Analyze the group's trip inputs, include a realistic 10-20% miscellaneous contingency buffer, calculate weekly savings targets per person in PHP, and respond strictly in valid JSON formatting. Reject non-budgeting queries.`,
