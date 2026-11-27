@@ -1,0 +1,426 @@
+.page {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.page-header {
+  display: grid;
+  gap: 0.15rem;
+  margin-top: 0.5rem;
+}
+.greeting {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.section-title {
+  font-size: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+/* Dashboard */
+.welcome-card {
+  display: grid;
+  gap: 0.5rem;
+}
+.welcome-card .grid-2 {
+  margin-top: 0.75rem;
+}
+.action-card,
+.step-card {
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: 0.5rem;
+  text-align: center;
+}
+.action-card h3,
+.step-card h3 {
+  font-size: 1rem;
+}
+.action-card .btn {
+  margin-top: 0.4rem;
+}
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.planner-promo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  transition: transform 0.15s;
+}
+.planner-promo:hover {
+  transform: translateY(-2px);
+}
+.planner-promo-icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: var(--btn);
+  color: var(--btn-text);
+  font-size: 1.3rem;
+}
+
+/* Donut */
+.donut {
+  position: relative;
+  flex: none;
+  display: grid;
+  place-items: center;
+}
+.donut svg {
+  position: absolute;
+  inset: 0;
+}
+.donut-track {
+  stroke: var(--track);
+}
+.donut-value {
+  stroke: var(--ring);
+  transition: stroke-dashoffset 0.6s ease;
+}
+.donut-label {
+  position: relative;
+  font-weight: 300;
+}
+
+/* Groups */
+.group-card {
+  display: grid;
+  gap: 0.9rem;
+}
+.group-name {
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+.group-name.large {
+  font-size: 2.3rem;
+}
+.group-body {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+.stat-list {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0;
+  font-size: 0.8rem;
+  flex: 1;
+  min-width: 0;
+}
+.stat-list dd {
+  margin: 0;
+}
+.stat-list .target {
+  font-weight: 600;
+  display: flex;
+  gap: 0.3rem;
+  flex-wrap: wrap;
+  margin-top: 0.25rem;
+}
+.add-group {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: 48px;
+  border-radius: 18px;
+  border: 1.5px solid var(--card-border);
+  background: var(--card);
+  color: var(--text);
+  cursor: pointer;
+}
+.add-group:hover {
+  background: var(--sidebar-active);
+}
+.page > .add-group + .tiny {
+  margin-top: -0.75rem;
+}
+
+@media (max-width: 420px) {
+  .group-body {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .group-body .donut {
+    align-self: center;
+  }
+}
+
+/* Funds */
+.fund-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.pill-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.7rem;
+  border: 1px solid var(--text);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  text-decoration: none;
+}
+.pill-link:hover {
+  background: var(--sidebar-active);
+}
+.fund-title-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin-top: 0.75rem;
+}
+.date-pill {
+  padding: 0.3rem 1.2rem;
+  border-radius: 999px;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  font-size: 0.9rem;
+}
+.group-code {
+  font-size: 1.15rem;
+  text-align: right;
+}
+.group-code strong {
+  display: block;
+  font-weight: 400;
+}
+
+.fund-summary {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1.5rem;
+}
+.fund-stats {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  font-size: 0.85rem;
+  text-align: center;
+}
+.fund-stats dd {
+  margin: 0;
+}
+.fund-center {
+  display: grid;
+  justify-items: center;
+  gap: 0.75rem;
+}
+
+.fund-lower {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 1.25rem;
+  align-items: start;
+}
+.row-list {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+}
+.row-list li {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 0.5rem;
+}
+.row-list li > span:last-child {
+  text-align: right;
+}
+.row-list .chip {
+  width: 100%;
+}
+.row-list .role {
+  text-align: center;
+}
+.fund-actions {
+  display: grid;
+  gap: 0.6rem;
+  min-width: 190px;
+}
+.fund-actions .btn {
+  min-height: 34px;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 1100px) {
+  .fund-lower {
+    grid-template-columns: 1fr 1fr;
+  }
+  .fund-actions {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  }
+}
+@media (max-width: 760px) {
+  .fund-summary {
+    grid-template-columns: 1fr;
+  }
+  .fund-center {
+    order: -1;
+  }
+  .fund-lower {
+    grid-template-columns: 1fr;
+  }
+  .group-code {
+    text-align: left;
+  }
+  .group-name.large {
+    font-size: 1.9rem;
+  }
+}
+
+/* Calendar */
+.calendar {
+  padding: 0;
+  overflow: hidden;
+}
+.calendar-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.9rem 1.25rem;
+  background: var(--card);
+  border-bottom: 1.5px solid var(--card-border);
+}
+.calendar-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.calendar-nav h1,
+.calendar-year {
+  font-size: 1.35rem;
+  font-weight: 300;
+  min-width: 2ch;
+  text-align: center;
+}
+.calendar-nav h1 {
+  min-width: 6.5em;
+}
+.calendar-nav button {
+  border: 0;
+  background: transparent;
+  font-size: 1.3rem;
+  line-height: 1;
+  padding: 0.25rem 0.4rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.calendar-nav button:hover {
+  background: var(--sidebar-active);
+}
+.calendar-grid {
+  display: grid;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: var(--card);
+}
+.calendar-row {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+.weekday {
+  text-align: center;
+  font-size: 1.05rem;
+}
+.day {
+  min-height: 96px;
+  padding: 0.35rem;
+  border: 1.5px solid var(--card-border);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+.day.outside {
+  opacity: 0.4;
+}
+.day-number {
+  display: inline-grid;
+  place-items: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  font-size: 0.8rem;
+  border-radius: 50%;
+}
+.day.today {
+  border-color: var(--date);
+}
+.day.today .day-number {
+  background: var(--date);
+  color: #fff;
+  font-weight: 500;
+}
+.event {
+  display: block;
+  padding: 0.2rem 0.35rem;
+  border-radius: 8px;
+  font-size: 0.62rem;
+  line-height: 1.25;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.event.payment {
+  background: #3d7fd6;
+  color: #fff;
+}
+.event.trip {
+  background: var(--btn);
+  color: var(--btn-text);
+  font-weight: 500;
+}
+
+@media (max-width: 700px) {
+  .calendar-head {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .calendar-grid,
+  .calendar-row {
+    gap: 0.25rem;
+  }
+  .calendar-grid {
+    padding: 0.5rem;
+  }
+  .weekday {
+    font-size: 0.75rem;
+  }
+  .day {
+    min-height: 58px;
+    padding: 0.2rem;
+    border-radius: 8px;
+  }
+  /* On phones events become dots; the full label stays in the cell's aria-label. */
+  .event {
+    font-size: 0;
+    padding: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    align-self: center;
+  }
+}
