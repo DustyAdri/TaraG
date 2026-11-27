@@ -2,6 +2,35 @@ import { GoogleGenAI, Type, HarmCategory, HarmBlockThreshold } from '@google/gen
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
+const BUFFER_CATEGORY = /misc|contingency|buffer|emergency/i;
+
+/**
+ * LLMs are unreliable at arithmetic, so the server recomputes the totals
+ * from the model's own line items instead of trusting its numbers.
+ * - estimated_total_cost = base expenses + recommended_misc_buffer
+ * - weekly_savings_target_per_person = (total - current savings) / people / weeks
+ * Breakdown rows that are themselves the buffer are excluded from the base,
+ * so the buffer is never counted twice.
+ */
+export function verifyPlanMath(plan, tripData) {
+  if (plan.financial_health_status === 'Out of Scope') return plan;
+
+  const buffer = Number(plan.recommended_misc_buffer) || 0;
+  const base = plan.expense_breakdown
+    .filter((item) => !BUFFER_CATEGORY.test(item.category))
+    .reduce((sum, item) => sum + (Number(item.estimated_amount) || 0), 0);
+
+  const total = base + buffer;
+  const remaining = Math.max(0, total - Number(tripData.currentSavings));
+  const weekly = Math.ceil(remaining / tripData.groupSize / tripData.weeksLeft);
+
+  return {
+    ...plan,
+    estimated_total_cost: total,
+    weekly_savings_target_per_person: weekly,
+  };
+}
+
 export async function generateTripBudgetPlan(tripData, onChunk) {
   try {
     const promptText = `
@@ -73,7 +102,7 @@ export async function generateTripBudgetPlan(tripData, onChunk) {
 
     if (!fullText.trim()) throw new Error('Response blocked by safety filters or empty.');
 
-    return JSON.parse(fullText);
+    return verifyPlanMath(JSON.parse(fullText), tripData);
   } catch (error) {
     console.error('Gemini API Streaming Error:', error);
     throw new Error('Failed to generate AI trip budget plan.');
